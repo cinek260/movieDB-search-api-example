@@ -10,7 +10,7 @@
   background-size: cover;
   flex: 1 1 50%;
   height: 100vh;
-  -webkit-justify-content: center
+  -webkit-justify-content: center;
   justify-content: center;
   -webkit-align-items: center;
   -ms-align-items: center;
