@@ -14,14 +14,16 @@ class Main {
 
   loadOnScroll() {
     window.addEventListener('scroll', () => {
+      // fired api call when scrolling to bottom of page && there are any movies left && not any incomplete api call
       if((window.scrollY > document.body.scrollHeight - window.innerHeight * 1.2) && this.movieDBService.page < this.movieDBService.totalPages && !this.movieDBService.isProcessing) {
-        this.movieDBService.loadNextPage();
+        this.movieDBService.searchMoviesByName(this.movieDBService.name, this.movieDBService.page + 1);
       }
     });
   }
 
   searchButtonClickHandler(searchText) {
     const movieItems = document.getElementById('MoviesWrapper');
+    // Remove previous movies
     while (movieItems.firstChild) {
       movieItems.removeChild(movieItems.firstChild);
     }
@@ -41,4 +43,6 @@ class Main {
   }
 }
 
+
+// Start an app;
 const app = new Main();

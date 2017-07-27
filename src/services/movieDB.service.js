@@ -55,8 +55,4 @@ export default class MovieDBService {
         }
       })
     }
-
-    loadNextPage() {
-      this.searchMoviesByName(this.name, this.page + 1);
-    }
 }

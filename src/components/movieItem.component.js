@@ -1,9 +1,9 @@
 export default class MovieItem {
 
-    constructor(movie, elementId, baseUrl, size) {
-      this.elementId = elementId || 'MoviesWrapper';
-      this.baseUrl = baseUrl || 'https://image.tmdb.org/t/p/';
-      this.size = size || 'w500';
+    constructor(movie) {
+      this.elementId = 'MoviesWrapper';
+      this.baseUrl = 'https://image.tmdb.org/t/p/';
+      this.size = 'w500';
       this.movie = movie;
     }
 

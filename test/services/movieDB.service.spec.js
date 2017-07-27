@@ -25,5 +25,15 @@ describe("MovieDBService test", () => {
         expect(message).to.eql('Movies found');
       })
     })
+    it("searchMoviesByName function should get data from defined page", () => {
+      return movieDBService.searchMoviesByName('star wars', 2).then(() => {
+        expect(movieDBService.page).to.eql(2);
+      })
+    })
+    it("searchMoviesByName function should get data from 1 page if page is not defined", () => {
+      return movieDBService.searchMoviesByName('star wars').then(() => {
+        expect(movieDBService.page).to.eql(1);
+      })
+    })
   })
 })
