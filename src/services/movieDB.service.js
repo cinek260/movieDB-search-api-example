@@ -8,6 +8,7 @@ export default class MovieDBService {
       this.page = 0;
       this.totalResults = 0;
       this.totalPages = 0;
+      this.searchMoviesByName = this.searchMoviesByName.bind(this);
     }
 
     searchMoviesByName(name) {

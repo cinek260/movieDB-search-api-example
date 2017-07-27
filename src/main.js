@@ -1,9 +1,8 @@
 import { MovieDBService } from './services/main';
+import { SearchForm } from './components/main';
 
 const movieDBService = new MovieDBService();
+const searchForm = new SearchForm(movieDBService.searchMoviesByName);
 
-movieDBService.searchMoviesByName().then(({message}) => {
-  console.log('message: ', message)
-}).catch(({message}) => {
-  console.log('Error message: ', message)
-})
+searchForm.renderInput();
+searchForm.renderButton();
