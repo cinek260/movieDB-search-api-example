@@ -45,4 +45,4 @@ class Main {
 
 
 // Start an app;
-const app = new Main();
+new Main();
