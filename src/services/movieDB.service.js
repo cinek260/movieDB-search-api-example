@@ -10,20 +10,24 @@ export default class MovieDBService {
       this.totalPages = 0;
       this.searchMoviesByName = this.searchMoviesByName.bind(this);
       this.processMovieData = processMovieData;
+      this.name = '';
+      this.isProcessing = false;
     }
 
-    searchMoviesByName(name) {
+    searchMoviesByName(name, page) {
+      this.name = name;
       return new Promise((resolve, reject) => {
         if (name === undefined || name === '') {
           reject({message: 'Movie name is not defined'});
         } else {
-          this.fetchMoviesByName(name, resolve, reject);
+          this.fetchMoviesByName(name, resolve, reject, page);
         }
       });
     }
 
-    fetchMoviesByName(name, resolve, reject) {
-      return fetch(`${API_URL}/search/movie?api_key=${API_KEY}&query=${name}`)
+    fetchMoviesByName(name, resolve, reject, page) {
+      this.isProcessing = true;
+      return fetch(`${API_URL}/search/movie?api_key=${API_KEY}&query=${name}&page=${page || 1}`)
       .then(response => {
         if (response.status === 200) {
           response.json().then(movies => {
@@ -33,17 +37,26 @@ export default class MovieDBService {
             this.totalPages = movies.total_pages;
             resolve({message: 'Movies found'});
             this.processMovieData();
+            this.isProcessing = false;
           })
-          .catch(ex => reject({
-            message: 'Exception',
-            exception: ex
-          }));
+          .catch(ex => {
+            reject({
+              message: 'Exception',
+              exception: ex
+            })
+            this.isProcessing = false;
+          });
         } else {
           reject({
             message: 'Response status not 200',
             status: response.status
           });
+          this.isProcessing = false;
         }
       })
+    }
+
+    loadNextPage() {
+      this.searchMoviesByName(this.name, this.page + 1);
     }
 }

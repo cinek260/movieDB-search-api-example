@@ -1,0 +1,23 @@
+#SearchForm {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+}
+
+#SearchForm input, #SearchForm button {
+  font-size: 2rem;
+  line-height: 3rem;
+  padding: .5rem 1rem;
+  border: 0;
+}
+
+#SearchForm input {
+  flex-grow: 7;
+}
+
+#SearchForm button {
+  flex-grow: 3;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #02182B;
+}

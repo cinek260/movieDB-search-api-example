@@ -13,7 +13,8 @@ export default class MovieItem {
       const title = document.createElement('h3');
       const overview = document.createElement('p');
 
-      wrapper.style.backgroundImage = `url(${this.baseUrl}${this.size}${this.movie.poster_path})`;
+      wrapper.style.backgroundImage = this.movie.poster_path ? `url(${this.baseUrl}${this.size}${this.movie.poster_path})` : '';
+      wrapper.className = 'movie-item';
       title.innerHTML = this.movie.title;
       overview.innerHTML = this.movie.overview;
 
