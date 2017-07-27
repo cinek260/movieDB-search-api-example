@@ -2,8 +2,6 @@ export default class SearchForm {
 
     constructor(buttonClickHandler) {
       this.inputText = '';
-      this.inputPlaceholder = 'Enter movie name here';
-      this.buttonText = 'Search movies';
       this.elementId = 'SearchForm';
       this.buttonClickHandler = buttonClickHandler;
       this.handleInputChange = this.handleInputChange.bind(this);
@@ -29,6 +27,7 @@ export default class SearchForm {
       const parent = document.getElementById(this.elementId);
       const input = document.createElement('input');
       input.type = 'text';
+      input.placeholder = 'Enter movie name here';
       input.onchange = this.handleInputChange;
       parent.appendChild(input);
     }
@@ -36,7 +35,7 @@ export default class SearchForm {
     renderButton() {
       const parent = document.getElementById(this.elementId);
       const button = document.createElement('button');
-      button.innerHTML = 'text';
+      button.innerHTML = 'Search movies';
       button.onclick = this.handleButtonClick;
       parent.appendChild(button);
     }

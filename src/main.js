@@ -5,9 +5,19 @@ class Main {
   constructor() {
     this.renderMovieItems = this.renderMovieItems.bind(this);
     this.searchButtonClickHandler = this.searchButtonClickHandler.bind(this);
+    this.loadOnScroll = this.loadOnScroll.bind(this);
     this.movieDBService = new MovieDBService(this.renderMovieItems);
     this.searchForm = new SearchForm(this.searchButtonClickHandler);
     this.initialrender();
+    this.loadOnScroll();
+  }
+
+  loadOnScroll() {
+    window.addEventListener('scroll', () => {
+      if((window.scrollY > document.body.scrollHeight - window.innerHeight * 1.2) && this.movieDBService.page < this.movieDBService.totalPages && !this.movieDBService.isProcessing) {
+        this.movieDBService.loadNextPage();
+      }
+    });
   }
 
   searchButtonClickHandler(searchText) {
