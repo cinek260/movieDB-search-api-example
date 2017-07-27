@@ -1,4 +1,4 @@
-import MovieDBService from './movieDB.service.js';
+import MovieDBService from './movieDB.service';
 
 export default {
   MovieDBService,
