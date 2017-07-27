@@ -3,12 +3,13 @@ const API_URL = 'https://api.themoviedb.org/3';
 
 export default class MovieDBService {
 
-    constructor() {
+    constructor(processMovieData) {
       this.movies = [];
       this.page = 0;
       this.totalResults = 0;
       this.totalPages = 0;
       this.searchMoviesByName = this.searchMoviesByName.bind(this);
+      this.processMovieData = processMovieData;
     }
 
     searchMoviesByName(name) {
@@ -31,6 +32,7 @@ export default class MovieDBService {
             this.totalResults = movies.total_results;
             this.totalPages = movies.total_pages;
             resolve({message: 'Movies found'});
+            this.processMovieData();
           })
           .catch(ex => reject({
             message: 'Exception',
